@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yandex Disk Downloader</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Yandex Disk Downloader</h1>
+
+        <form id="downloadForm" action="/download" method="post">
+            <div class="form-group">
+                <label for="seller">Продавец:</label>
+                <input type="text" id="seller" name="seller" required>
+            </div>
+
+            <div class="form-group">
+                <label for="call_type">Тип звонка:</label>
+                <select id="call_type" name="call_type" required>
+                    <option value="вход">Входящий</option>
+                    <option value="исход">Исходящий</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="limit">Лимит файлов:</label>
+                <input type="number" id="limit" name="limit" value="5" min="1" max="20">
+            </div>
+
+            <div class="form-group">
+                <label for="step">Шаг (каждый N-й файл):</label>
+                <input type="number" id="step" name="step" value="1" min="1" max="10">
+            </div>
+
+            <button type="submit">Скачать и отправить</button>
+        </form>
+    </div>
+</body>
+</html>

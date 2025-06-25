@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты обработки</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Результаты обработки</h1>
+
+        <div class="results-summary">
+            <p>Обработано файлов: {{ result.total_files }}</p>
+        </div>
+
+        <div class="results-details">
+            {% for file in result.results %}
+            <div class="file-result {% if file.status == 'success' %}success{% else %}error{% endif %}">
+                <h3>{{ file.filename }}</h3>
+                {% if file.status == 'success' %}
+                    <p>Статус: Успешно</p>
+                    <p>Код ответа сервера: {{ file.post_status.status_code }}</p>
+                    <details>
+                        <summary>Показать ответ сервера</summary>
+                        <pre>{{ file.post_status.response | tojson(indent=2) }}</pre>
+                    </details>
+                {% else %}
+                    <p>Статус: Ошибка</p>
+                    <p>Сообщение: {{ file.message }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="/" class="back-button">На главную</a>
+    </div>
+</body>
+</html>
